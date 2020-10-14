@@ -5,7 +5,7 @@
 <div class="row">
     <div class="col-md-6 offset-md-3">
 
-        <h3>Makale Guncelle</h3>
+        <h3>Məqalə redaktə et</h3>
         <hr>
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
@@ -13,11 +13,11 @@
             <!--  {{form.as_p}} -->
             {{form|crispy}}
             
-            <button type="submit" class="btn btn-danger">Makale guncelle</button>
+            <button type="submit" class="btn btn-danger">Məqaləni redaktə et</button>
 
         </form>
     </div>
 </div>
 
 
-{% endblock body %}<h3>Kayit ol</h3>
+{% endblock body %}<h3>Redaktə et</h3>

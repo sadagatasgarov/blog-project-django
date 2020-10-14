@@ -36,7 +36,7 @@
         <hr>
         <!-- Comments Form -->
         <div class="card my-4">
-            <h5 class="card-header">Yorum ekle:</h5>
+            <h5 class="card-header">Şərh əlavə et:</h5>
             <div class="card-body">
                 <form method="POST" action="{% url 'article:comment' article.id%}">
                     {% csrf_token %}
@@ -47,10 +47,10 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="formGroupExampleInput">Yorumunuz</label>
+                        <label for="formGroupExampleInput">Şərhiniz</label>
                         <textarea name="comment_content" class="form-control" rows="3"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-danger">Ekle</button>
+                    <button type="submit" class="btn btn-danger">Əlavə et</button>
                 </form>
 
                 <form>
@@ -71,7 +71,7 @@
     </div>
     {% endfor %}
     {% else %}
-    <div class="alert alert-danger">Bu makaleye herhangi bir yorum yazilmamis ilk yorum yapansiz olun
+    <div class="alert alert-danger">Bu məqaləyə hər hansi yazi yazilmayib. İlk şərh yazan siz olun
     </div>
     {% endif %}
 
