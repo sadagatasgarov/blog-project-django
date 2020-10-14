@@ -1,0 +1,128 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class="container">
+
+    <!-- Post Content Column -->
+    <div class="container">
+
+        <!-- Title -->
+        <h1 class="mt-4">{{article.title}}</h1>
+
+        <!-- Author -->
+        <p class="lead">
+            by
+            <a href="#">{{article.author.username}}</a>
+        </p>
+
+        <hr>
+
+        <!-- Date/Time -->
+        <p>Posted on {{article.created_date}}</p>
+
+        <hr>
+
+        <!-- Preview Image -->
+        {% if article.article_file %}
+        <a href="{% url 'article:detail' article.id %}"> <img class=" w-25" src="{{article.article_file.url}}" alt="">
+        </a>
+        {% else %}
+        {% endif %}
+        <hr>
+
+        <!-- Post Content -->
+        <p class="lead">{{article.content|safe}}</p>
+        <hr>
+        <!-- Comments Form -->
+        <div class="card my-4">
+            <h5 class="card-header">Yorum ekle:</h5>
+            <div class="card-body">
+                <form method="POST" action="{% url 'article:comment' article.id%}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Isminiz</label>
+                        <input name="comment_author" type="text" class="form-control" id="formGroupExampleInput"
+                            placeholder="Isminizi giriniz">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Yorumunuz</label>
+                        <textarea name="comment_content" class="form-control" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-danger">Ekle</button>
+                </form>
+
+                <form>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {% if comments %}
+    {% for comment in comments%}
+    <div class="media mb-4">
+        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+        <div class="media-body">
+            <h5 class="mt-0">{{comment.comment_author}}</h5>
+            {{comment.comment_content}}
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <div class="alert alert-danger">Bu makaleye herhangi bir yorum yazilmamis ilk yorum yapansiz olun
+    </div>
+    {% endif %}
+
+
+
+    <!-- Single Comment -->
+    <!-- <div class="media mb-4">
+                <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+                <div class="media-body">
+                    <h5 class="mt-0">Commenter Name</h5>
+                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras
+                    purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
+                    vulputate fringilla. Donec lacinia congue felis in faucibus.
+                </div>
+            </div> -->
+
+    <!-- Comment with nested comments -->
+    <!-- <div class="media mb-4">
+                <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+                <div class="media-body">
+                    <h5 class="mt-0">Commenter Name</h5>
+                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras
+                    purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
+                    vulputate fringilla. Donec lacinia congue felis in faucibus.
+
+                    <div class="media mt-4">
+                        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+                        <div class="media-body">
+                            <h5 class="mt-0">Commenter Name</h5>
+                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
+                            Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc
+                            ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                        </div>
+                    </div>
+
+                    <div class="media mt-4">
+                        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+                        <div class="media-body">
+                            <h5 class="mt-0">Commenter Name</h5>
+                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
+                            Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc
+                            ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                        </div>
+                    </div>
+
+                </div>
+            </div> -->
+
+</div>
+
+
+</div>
+
+{% endblock  %}

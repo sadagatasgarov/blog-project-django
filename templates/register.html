@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% load crispy_forms_tags %}
+{% block body %}
+<h3>Kayit ol</h3>
+
+<form method = "post">
+    {% csrf_token %}
+
+   <!--  {{form.as_p}} -->
+
+    {{form|crispy}}
+    
+    <button type="submit" class="btn btn-danger">Kayit ol</button>
+</form>
+{% endblock body %}<h3>Kayit ol</h3>

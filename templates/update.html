@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% load crispy_forms_tags %}
+{% block body %}
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+
+        <h3>Makale Guncelle</h3>
+        <hr>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form.media}}
+            <!--  {{form.as_p}} -->
+            {{form|crispy}}
+            
+            <button type="submit" class="btn btn-danger">Makale guncelle</button>
+
+        </form>
+    </div>
+</div>
+
+
+{% endblock body %}<h3>Kayit ol</h3>
